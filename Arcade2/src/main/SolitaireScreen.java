@@ -54,86 +54,6 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 	public SolitaireScreen(int width, int height) {
 		super(width, height);
 	}
-
-	@Override
-	public void initObjects(ArrayList<Visible> viewObjects) {
-		
-		deck = CardsMethods.shuffle(CardsMethods.newDeck());
-		
-		deckImg = new ClickableGraphic(20, 100, 80, 120, "cardImages/cardback.png");
-		deckImg.setAction(new Action() {
-			public void act() {
-				draw();
-			}
-		});
-		viewObjects.add(deckImg);
-		
-		drawIdx = 0;
-		
-		endStack1 = new ArrayList<Card>();
-		endStack2 = new ArrayList<Card>();
-		endStack3 = new ArrayList<Card>();
-		endStack4 = new ArrayList<Card>();
-		
-		stack1 = new ArrayList<Card>();
-		stack2 = new ArrayList<Card>();
-		stack3 = new ArrayList<Card>();
-		stack4 = new ArrayList<Card>();
-		stack5 = new ArrayList<Card>();
-		stack6 = new ArrayList<Card>();
-		stack7 = new ArrayList<Card>();
-		
-		ArrayList<ArrayList<Card>> apple = new ArrayList<ArrayList<Card>>();
-		
-		apple.add(stack1);
-		apple.add(stack2);
-		apple.add(stack3);
-		apple.add(stack4);
-		apple.add(stack5);
-		apple.add(stack6);
-		apple.add(stack7);
-		
-		for (int i = 0; i < apple.size(); i++) {
-			for (int j = 0; j < i+1; j++) {
-				apple.get(i).add(deck.remove(0));
-			}
-			
-			apple.get(i).get(apple.get(i).size() - 1).setTurned(true);
-			
-			System.out.println();
-			System.out.println();
-			System.out.println();
-			for (int j = 0; j < apple.get(i).size(); j++) {
-				System.out.print(apple.get(i).get(j).getName() + " ");
-			}
-		}
-		
-		paintStacks();
-		
-		
-//		make stack selection buttons
-		
-		ArrayList<Button> selectStackButtons = new ArrayList<Button>(); 
-		
-		selectStack1 = new Button(250, 300, 80, 30, "stack 1", Color.RED, new Action() {
-			public void act() {
-				
-			}
-		});
-		
-//		selectStack2
-//		selectStack3
-//		selectStack4
-//		selectStack5
-//		selectStack6
-//		selectStack7
-		
-		
-			viewObjects.add(selectStack1);
-			
-		
-		
-	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -250,7 +170,78 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		// TODO Auto-generated method stub
+deck = CardsMethods.shuffle(CardsMethods.newDeck());
 		
+		deckImg = new ClickableGraphic(20, 100, 80, 120, "cardImages/cardback.png");
+		deckImg.setAction(new Action() {
+			public void act() {
+				draw();
+			}
+		});
+		viewObjects.add(deckImg);
+		
+		drawIdx = 0;
+		
+		endStack1 = new ArrayList<Card>();
+		endStack2 = new ArrayList<Card>();
+		endStack3 = new ArrayList<Card>();
+		endStack4 = new ArrayList<Card>();
+		
+		stack1 = new ArrayList<Card>();
+		stack2 = new ArrayList<Card>();
+		stack3 = new ArrayList<Card>();
+		stack4 = new ArrayList<Card>();
+		stack5 = new ArrayList<Card>();
+		stack6 = new ArrayList<Card>();
+		stack7 = new ArrayList<Card>();
+		
+		ArrayList<ArrayList<Card>> apple = new ArrayList<ArrayList<Card>>();
+		
+		apple.add(stack1);
+		apple.add(stack2);
+		apple.add(stack3);
+		apple.add(stack4);
+		apple.add(stack5);
+		apple.add(stack6);
+		apple.add(stack7);
+		
+		for (int i = 0; i < apple.size(); i++) {
+			for (int j = 0; j < i+1; j++) {
+				apple.get(i).add(deck.remove(0));
+			}
+			
+			apple.get(i).get(apple.get(i).size() - 1).setTurned(true);
+			
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			for (int j = 0; j < apple.get(i).size(); j++) {
+				System.out.print(apple.get(i).get(j).getName() + " ");
+			}
+		}
+		
+		paintStacks();
+		
+		
+//		make stack selection buttons
+		
+		ArrayList<Button> selectStackButtons = new ArrayList<Button>(); 
+		
+		selectStack1 = new Button(250, 300, 80, 30, "stack 1", Color.RED, new Action() {
+			public void act() {
+				
+			}
+		});
+		
+//		selectStack2
+//		selectStack3
+//		selectStack4
+//		selectStack5
+//		selectStack6
+//		selectStack7
+		
+		
+			viewObjects.add(selectStack1);
 	}
 	
 	
