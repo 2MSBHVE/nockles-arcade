@@ -22,13 +22,12 @@ public class StartScreen extends ClickableScreen {
 		
 
 		startButton = new Button(getWidth() / 2, getHeight() - 40, 100, 30, "START", Color.RED, new Action() {
-
 			public void act() {
 				StartProgram.sPrg.setScreen(StartProgram.solitaire);
-
 			}
-
-		});	
+		});
+		
+		viewObjects.add(startButton);
 		
 	}
 

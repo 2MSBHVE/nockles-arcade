@@ -20,8 +20,10 @@ public class StartProgram extends GUIApplication {
 	@Override
 	protected void initScreen() {
 		startMenu = new StartScreen(getWidth(), getHeight());
+		solitaire = new SolitaireScreen(getWidth(), getHeight());
 		
 		setScreen(startMenu);
+		
 	}
 	
 	public static void main(String[] args) {

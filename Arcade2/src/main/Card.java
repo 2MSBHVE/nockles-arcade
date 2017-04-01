@@ -2,10 +2,10 @@ package main;
 
 public class Card {
 
-	final int DIAMONDS = 0;
-	final int CLUBS = 1;
-	final int HEARTS = 2;
-	final int SPADES = 3;
+	final static int DIAMONDS = 0;
+	final static int CLUBS = 1;
+	final static int HEARTS = 2;
+	final static int SPADES = 3;
 	
 	final int ACE = 1;
 	final int JACK = 11;
@@ -17,7 +17,18 @@ public class Card {
 	
 	private static int suit;
 	private static int value;
+	private static String imgLoc;
 	
+	private static boolean turned = false;
+	
+	public static boolean isTurned() {
+		return turned;
+	}
+
+	public static void setTurned(boolean turned) {
+		Card.turned = turned;
+	}
+
 	public Card(int suit, int value){
 		this.suit = suit;
 		this.value = value;
@@ -34,6 +45,10 @@ public class Card {
 
 	public static int getValue() {
 		return value;
+	}
+	
+	public static String getImgLoc(){
+		return "cardImages/" + NAMES[value] + "_of_" + SUITS[suit] + ".png";
 	}
 	
 }
