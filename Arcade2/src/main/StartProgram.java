@@ -27,7 +27,7 @@ public class StartProgram extends GUIApplication {
 	}
 	
 	public static void main(String[] args) {
-		sPrg = new StartProgram(1200, 700);
+		sPrg = new StartProgram(1200, 960);
 		Thread app = new Thread(sPrg);
 		app.start();
 	}

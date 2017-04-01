@@ -91,15 +91,15 @@ public abstract class ClickableScreen extends Screen implements MouseListener, M
 	}
 
 	public void mouseMoved(MouseEvent m) {
-		for(int i =0; i < clickables.size();i++){
-			if(clickables.get(i) instanceof HoverableClickable){
-				HoverableClickable c = (HoverableClickable)clickables.get(i);
-				if(c.isHovered(m.getX(), m.getY())){
-					c.hoverAct();
-					break;
-				}
-			}
-		}
+//		for(int i =0; i < clickables.size();i++){
+//			if(clickables.get(i) instanceof HoverableClickable){
+//				HoverableClickable c = (HoverableClickable)clickables.get(i);
+//				if(c.isHovered(m.getX(), m.getY())){
+//					c.hoverAct();
+//					break;
+//				}
+//			}
+//		}
 	}
 	
 	public MouseMotionListener getMouseMotionListener(){

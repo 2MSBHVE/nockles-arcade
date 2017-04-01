@@ -15,40 +15,40 @@ public class Card {
 	final static String[] SUITS = {"Diamonds", "Clubs", "Hearts", "Spades"};
 	final static String[] NAMES = {null, "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
 	
-	private static int suit;
-	private static int value;
-	private static String imgLoc;
+	private int suit;
+	private int value;
+	private String imgLoc;
 	
-	private static boolean turned = false;
+	private boolean turned = false;
 	
-	public static boolean isTurned() {
-		return turned;
+	public boolean isTurned() {
+		return this.turned;
 	}
 
-	public static void setTurned(boolean turned) {
-		Card.turned = turned;
+	public void setTurned(boolean turned) {
+		this.turned = turned;
 	}
 
-	public Card(int suit, int value){
-		this.suit = suit;
+	public Card(int value, int suit){
 		this.value = value;
+		this.suit = suit;
 	}
 	
-	public static String getName(){
-		String str = SUITS[suit] + " of " + NAMES[value];
+	public String getName(){
+		String str = NAMES[value] + " of " + SUITS[suit];
 		return str;
 	}
 
-	public static int getSuit() {
-		return suit;
+	public int getSuit() {
+		return this.suit;
 	}
 
-	public static int getValue() {
-		return value;
+	public int getValue() {
+		return this.value;
 	}
 	
-	public static String getImgLoc(){
-		return "cardImages/" + NAMES[value] + "_of_" + SUITS[suit] + ".png";
+	public String getImgLoc(){
+		return "cardImages/" + NAMES[this.value] + "_of_" + SUITS[this.suit] + ".png";
 	}
 	
 }

@@ -13,7 +13,9 @@ public class CardsMethods {
 		
 		for (int s = 0; s < Card.SUITS.length; s++) {
 			for (int c = 1; c < Card.NAMES.length; c++) {
-				deck.add(new Card(s, c));
+				Card card = new Card(c, s);
+				deck.add(card);
+				System.out.println(card.getName());
 			}
 		}
 		
