@@ -203,7 +203,8 @@ public class StartScreen extends ClickableScreen {
 			JOptionPane.showMessageDialog(null, "Returning to the future... \n\n"
 					+ "Incoming message from 1995: \n"
 					+ "Hope you had fun! But before you go, just remember... \n"
-					+ "Don't do anything stupid like elect some billionaire as President or something...");
+					+ "Don't do anything stupid like elect some billionaire as President or something... \n\n\n"
+					+ "(Music courtesy of Peter Berkman)");
 		}
 	
 	}
