@@ -563,7 +563,7 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 
 		ArrayList<Button> selectStackButtons = new ArrayList<Button>();
 
-		selectStack1 = new Button(250, 300, 80, 30, " stack 1", Color.GRAY, new Action() {
+		selectStack1 = new Button(250, 300, 80, 30, "Stack 1", Color.GRAY, new Action() {
 			public void act() {
 				boolean successful = placeCardOnStack(draw, stack1);
 				if (successful) {
@@ -578,7 +578,7 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 			}
 		});
 
-		selectStack2 = new Button(350, 300, 80, 30, " stack 2", Color.GRAY, new Action() {
+		selectStack2 = new Button(350, 300, 80, 30, "Stack 2", Color.GRAY, new Action() {
 			public void act() {
 				boolean successful = placeCardOnStack(draw, stack2);
 				if (successful) {
@@ -593,7 +593,7 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 			}
 		});
 
-		selectStack3 = new Button(450, 300, 80, 30, " stack 3", Color.GRAY, new Action() {
+		selectStack3 = new Button(450, 300, 80, 30, "Stack 3", Color.GRAY, new Action() {
 			public void act() {
 				boolean successful = placeCardOnStack(draw, stack3);
 				if (successful) {
@@ -608,7 +608,7 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 			}
 		});
 
-		selectStack4 = new Button(550, 300, 80, 30, " stack 4", Color.GRAY, new Action() {
+		selectStack4 = new Button(550, 300, 80, 30, "Stack 4", Color.GRAY, new Action() {
 			public void act() {
 				boolean successful = placeCardOnStack(draw, stack4);
 				if (successful) {
@@ -623,7 +623,7 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 			}
 		});
 
-		selectStack5 = new Button(650, 300, 80, 30, " stack 5", Color.GRAY, new Action() {
+		selectStack5 = new Button(650, 300, 80, 30, "Stack 5", Color.GRAY, new Action() {
 			public void act() {
 				boolean successful = placeCardOnStack(draw, stack5);
 				if (successful) {
@@ -638,7 +638,7 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 			}
 		});
 
-		selectStack6 = new Button(750, 300, 80, 30, " stack 6", Color.GRAY, new Action() {
+		selectStack6 = new Button(750, 300, 80, 30, "Stack 6", Color.GRAY, new Action() {
 			public void act() {
 				boolean successful = placeCardOnStack(draw, stack6);
 				if (successful) {
@@ -653,7 +653,7 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 			}
 		});
 
-		selectStack7 = new Button(850, 300, 80, 30, " stack 7", Color.GRAY, new Action() {
+		selectStack7 = new Button(850, 300, 80, 30, "Stack 7", Color.GRAY, new Action() {
 			public void act() {
 				boolean successful = placeCardOnStack(draw, stack7);
 				if (successful) {
@@ -823,7 +823,7 @@ try {
 
 		boolean validInput = false;
 		while (!validInput) {
-			String input1 = JOptionPane.showInputDialog("enter source stack #");
+			String input1 = JOptionPane.showInputDialog("I want to take cards from Stack...");
 			if (input1 == null){
 				return;
 			}
@@ -863,7 +863,7 @@ try {
 		} else {
 			Object[] cardNamesInStack = cNames.toArray();
 
-			y2 = allCNames.indexOf(cardNamesInStack[JOptionPane.showOptionDialog(null, "Select a card from Stack " + x + " to move", "",
+			y2 = allCNames.indexOf(cardNamesInStack[JOptionPane.showOptionDialog(null, "From Stack " + x + ", I want to move the...", "",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, cardNamesInStack, null)]);
 			System.out.println(source.get(y2).getName());
 		}
@@ -881,7 +881,7 @@ try {
 		String input3 = new String();
 		boolean validInput3 = false;
 		while (!validInput3) {
-			input3 = JOptionPane.showInputDialog("Move card " + card.getName() + " from Stack " + x + " to stack #");
+			input3 = JOptionPane.showInputDialog("I want to move the " + card.getName() + " from Stack " + x + " to Stack...");
 			if (input3 == null){
 				return;
 			}
