@@ -7,10 +7,10 @@ public class Card {
 	final static int HEARTS = 2;
 	final static int SPADES = 3;
 	
-	final int ACE = 1;
-	final int JACK = 11;
-	final int QUEEN = 12;
-	final int KING = 14;
+	final static int ACE = 1;
+	final static int JACK = 11;
+	final static int QUEEN = 12;
+	final static int KING = 13;
 	
 	final static String[] SUITS = {"Diamonds", "Clubs", "Hearts", "Spades"};
 	final static String[] NAMES = {null, "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};

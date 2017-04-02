@@ -10,6 +10,10 @@ import javax.swing.ImageIcon;
 
 public class Graphic implements Visible {
 
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
 	private BufferedImage image;
 	private boolean loadedImages;
 	private int x;
