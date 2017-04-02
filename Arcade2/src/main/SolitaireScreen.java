@@ -78,7 +78,7 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 	private String instructions = "Welcome to Solitaire!" + "\n\n"
 			+ "Click the face-down card at the top left - or press 'Q' - to cycle through the deck. \n"
 			+ "Click on a \"Stack\" button to move the currently drawn card to a stack. \n"
-			+ "Click \"Move Cards\" - or press 'E' - to move cards between stacks. \n"
+			+ "Click \"Move Cards\" - or press 'U' - to move cards between stacks. \n"
 			+ "\n\n"
 			+ "Press 'H' at any time to show this menu, or 'R' to refresh the graphics.";
 
