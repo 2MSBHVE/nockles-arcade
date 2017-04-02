@@ -26,6 +26,8 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 	private Graphic background;
 	private Graphic cover;
 	private Graphic cover2;
+	
+	private boolean offeredAutoPlay = false;
 
 	private TextLabel userTextLabel;
 	
@@ -51,6 +53,8 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 	private Button useDrawnBtn;
 	
 	private Button moveCardsBtn;
+	private Button newGameBtn;
+	private Button exitBtn;
 
 	private int drawIdx;
 
@@ -96,11 +100,19 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_W) {
 			useDrawnCard();
 		} else if (e.getKeyCode() == KeyEvent.VK_U) {
-
-			// JOptionPane.showInputDialog(null, "this is a pop up message")
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			useCard2();
 		} else if (e.getKeyCode() == KeyEvent.VK_M) {
 			checkWinConditions(true);
+		} else if (e.getKeyCode() == KeyEvent.VK_N) {
+			newGame();
+		}else if (e.getKeyCode() == KeyEvent.VK_R) {
+			paintStacks();
 		}
 	//		else if (e.getKeyCode() == KeyEvent.VK_H) {
 //			displayHelp();
@@ -256,12 +268,19 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 
 			if (stack.size() == 0 && card.getValue() == Card.KING) {
 				stack.add(card);
+				if(card == draw){
+					viewObjects.remove(drawImg);
+				}
 				return true;
 			} else if (!stack.isEmpty()) {
 				if ((stack.get(stack.size() - 1).getSuit() % 2) != (card.getSuit() % 2)) {
 					if (card.getValue() == stack.get(stack.size() - 1).getValue() - 1) {
 						stack.add(card);
+						if(card == draw){
+							viewObjects.remove(drawImg);
+						}
 						return true;
+						
 					}
 				}
 			}
@@ -343,83 +362,130 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 
 	}
 
-	private void paintStacks() {
+	void paintStacks() {
 		checkWinConditions(false);
-
-		for (int i = 0; i < viewObjects.size(); i++) {
-			if (viewObjects.get(i).getY() > 340) {
-				viewObjects.remove(i);
+		try{
+			for (int i = 0; i < viewObjects.size(); i++) {
+				if (viewObjects.get(i).getY() > 340 && viewObjects.get(i).getClass() != new Button(0, 0, 2, 2, null, null, null).getClass()) {
+					viewObjects.remove(i);
+				}
+				if (viewObjects.get(i).getX() > 240 && viewObjects.get(i).getY() < 230) {
+					viewObjects.remove(i);
+				}
 			}
-			if (viewObjects.get(i).getX() > 240 && viewObjects.get(i).getY() < 230) {
-				viewObjects.remove(i);
+
+			cover = new Graphic(250, 350, getWidth() - 250, (getHeight() - 350) - 75, "resources/green.png");
+			cover2 = new Graphic(240, 60, getWidth() - 240, 170, "resources/green.png");
+
+			viewObjects.add(cover);
+			viewObjects.add(cover2);
+
+			if (viewObjects.contains(userTextLabel)) {
+				viewObjects.remove(userTextLabel);
 			}
-		}
+			viewObjects.add(userTextLabel); 
 
-		cover = new Graphic(250, 350, getWidth() - 250, getHeight() - 350, "resources/green.png");
-		cover2 = new Graphic(240, 0, getWidth() - 240, 230, "resources/green.png");
 
-		viewObjects.add(cover);
-		viewObjects.add(cover2);
-		
-		viewObjects.add(userTextLabel);
 
-		ArrayList<ArrayList<Card>> apple = new ArrayList<ArrayList<Card>>();
 
-		apple.add(stack1);
-		apple.add(stack2);
-		apple.add(stack3);
-		apple.add(stack4);
-		apple.add(stack5);
-		apple.add(stack6);
-		apple.add(stack7);
+			ArrayList<ArrayList<Card>> apple = new ArrayList<ArrayList<Card>>();
 
-		ArrayList<ArrayList<Card>> endStacksAL = new ArrayList<ArrayList<Card>>();
+			apple.add(stack1);
+			apple.add(stack2);
+			apple.add(stack3);
+			apple.add(stack4);
+			apple.add(stack5);
+			apple.add(stack6);
+			apple.add(stack7);
 
-		endStacksAL.add(endStack1);
-		endStacksAL.add(endStack2);
-		endStacksAL.add(endStack3);
-		endStacksAL.add(endStack4);
+			ArrayList<ArrayList<Card>> endStacksAL = new ArrayList<ArrayList<Card>>();
 
-		int initX = 250;
+			endStacksAL.add(endStack1);
+			endStacksAL.add(endStack2);
+			endStacksAL.add(endStack3);
+			endStacksAL.add(endStack4);
 
-		for (int i = 0; i < apple.size(); i++) {
+			int initX = 250;
 
-			int initY = 350;
+			for (int i = 0; i < apple.size(); i++) {
 
-			for (int j = 0; j < apple.get(i).size(); j++) {
-				if (j == apple.get(i).size() - 1) {
-					apple.get(i).get(j).setTurned(true);
+				int initY = 350;
+
+				for (int j = 0; j < apple.get(i).size(); j++) {
+					if (j == apple.get(i).size() - 1) {
+						apple.get(i).get(j).setTurned(true);
+					}
+
+					if (apple.get(i).get(j).isTurned()) {
+						viewObjects.add(new Graphic(initX, initY, 80, 120, apple.get(i).get(j).getImgLoc()));
+					} else {
+						viewObjects.add(new Graphic(initX, initY, 80, 120, "cardImages/cardback.png"));
+					}
+
+					initY += 25;
 				}
 
-				if (apple.get(i).get(j).isTurned()) {
-					viewObjects.add(new Graphic(initX, initY, 80, 120, apple.get(i).get(j).getImgLoc()));
-				} else {
-					viewObjects.add(new Graphic(initX, initY, 80, 120, "cardImages/cardback.png"));
+				initX += 100;
+			}
+
+			int initX2 = 250;
+			for (int i = 0; i < endStacksAL.size(); i++) {
+				if (endStacksAL.get(i).size() > 0) {
+					viewObjects.add(new Graphic(initX2, 100, 80, 120,
+							endStacksAL.get(i).get(endStacksAL.get(i).size() - 1).getImgLoc()));
 				}
-
-				initY += 25;
+				initX2 += 100;
 			}
-
-			initX += 100;
+		} catch (Exception e) {
+			paintStacks();
 		}
-
-		int initX2 = 250;
-		for (int i = 0; i < endStacksAL.size(); i++) {
-			if (endStacksAL.get(i).size() > 0) {
-				viewObjects.add(new Graphic(initX2, 100, 80, 120,
-						endStacksAL.get(i).get(endStacksAL.get(i).size() - 1).getImgLoc()));
-			}
-			initX2 += 100;
-		}
-
 	}
 
 	private void checkWinConditions(boolean cheat) {
 		if ((endStack1.size() + endStack2.size() + endStack3.size() + endStack4.size() == 52) || cheat) {
+			JOptionPane.showMessageDialog(null, "You win!");
 			StartProgram.sPrg.user.setCompletedSolitaire(true);
 			StartProgram.sPrg.setScreen(StartProgram.sPrg.startMenu);
 			StartProgram.sPrg.solitaire = new SolitaireScreen(getWidth(), getHeight());
 		}
+		else if (!offeredAutoPlay) {
+			ArrayList<ArrayList<Card>> apple = new ArrayList<ArrayList<Card>>();
+
+			apple.add(stack1);
+			apple.add(stack2);
+			apple.add(stack3);
+			apple.add(stack4);
+			apple.add(stack5);
+			apple.add(stack6);
+			apple.add(stack7);
+			
+			int unTurnedCards = 0;
+			
+			for (int i = 0; i < apple.size(); i++) {
+				for (int j = 0; j < apple.get(i).size(); j++) {
+					Card c = apple.get(i).get(j);
+					if(!c.isTurned()){
+						unTurnedCards++;
+					}
+				}
+			}
+			
+			if (unTurnedCards == 0) {
+				int n = JOptionPane.showConfirmDialog(
+					    null,
+					    "There are no unrevealed cards on the board. Would you like to auto-play the rest of the game?",
+					    "",
+					    JOptionPane.YES_NO_OPTION);
+				if(n == 0) {
+					checkWinConditions(true);
+				}
+			}
+		}
+	}
+	
+	private void newGame(){
+		StartProgram.sPrg.solitaire = new SolitaireScreen(getWidth(), getHeight());
+		StartProgram.sPrg.setScreen(StartProgram.sPrg.solitaire);
 	}
 
 	public KeyListener getKeyListener() {
@@ -433,9 +499,9 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 
 		background = new Graphic(0, 0, getWidth(), getHeight(), "resources/green.png");
 		viewObjects.add(background);
-
-		userTextLabel = new TextLabel(getWidth() - 125, 25, 100, 30, "Helvetica", 20, Color.WHITE,
-				"hi");
+//		140, 25, 125, 30
+		userTextLabel = new TextLabel(280, 25, 1000, 30, "Helvetica", 20, Color.WHITE,
+				"User: " + StartProgram.user.getName());
 		
 		
 		
@@ -483,12 +549,12 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 
 			apple.get(i).get(apple.get(i).size() - 1).setTurned(true);
 
-			System.out.println();
-			System.out.println();
-			System.out.println();
-			for (int j = 0; j < apple.get(i).size(); j++) {
-				System.out.print(apple.get(i).get(j).getName() + " ");
-			}
+//			System.out.println();
+//			System.out.println();
+//			System.out.println();
+//			for (int j = 0; j < apple.get(i).size(); j++) {
+//				System.out.print(apple.get(i).get(j).getName() + " ");
+//			}
 		}
 
 		paintStacks();
@@ -688,6 +754,19 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 		});
 		
 		viewObjects.add(stopMusicButton);
+		
+		exitBtn = new Button(10, 25, 125, 30, "  GO BACK", Color.RED, new Action() {
+			public void act() {
+				StartProgram.sPrg.setScreen(StartProgram.sPrg.startMenu);
+			}
+		});
+		newGameBtn = new Button(140, 25, 135, 30, " NEW GAME", Color.BLUE, new Action() {
+			public void act() {
+				newGame();
+			}
+		});
+		viewObjects.add(exitBtn);
+		viewObjects.add(newGameBtn);
 	}
 
 	private boolean placeCardOnEndStack(Card card, ArrayList<Card> source, ArrayList<Card> dest) {
@@ -745,7 +824,9 @@ try {
 		boolean validInput = false;
 		while (!validInput) {
 			String input1 = JOptionPane.showInputDialog("enter source stack #");
-
+			if (input1 == null){
+				return;
+			}
 			try {
 				int xTemp = Integer.parseInt(input1);
 				if (1 <= xTemp && xTemp <= 7) {
@@ -782,7 +863,7 @@ try {
 		} else {
 			Object[] cardNamesInStack = cNames.toArray();
 
-			y2 = allCNames.indexOf(cardNamesInStack[JOptionPane.showOptionDialog(null, "Select a card to move", "",
+			y2 = allCNames.indexOf(cardNamesInStack[JOptionPane.showOptionDialog(null, "Select a card from Stack " + x + " to move", "",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, cardNamesInStack, null)]);
 			System.out.println(source.get(y2).getName());
 		}
@@ -800,8 +881,10 @@ try {
 		String input3 = new String();
 		boolean validInput3 = false;
 		while (!validInput3) {
-			input3 = JOptionPane.showInputDialog("enter dest stack #");
-
+			input3 = JOptionPane.showInputDialog("Move card " + card.getName() + " from Stack " + x + " to stack #");
+			if (input3 == null){
+				return;
+			}
 			try {
 				int zTemp = Integer.parseInt(input3);
 				if (1 <= zTemp && zTemp <= 7) {
@@ -875,6 +958,13 @@ catch(Exception e){
 		System.out.println("Entered: " + x);
 
 		return x;
+	}
+
+	public void repaintUserName() {
+		viewObjects.remove(userTextLabel);
+		userTextLabel = new TextLabel(280, 25, 1000, 30, "Helvetica", 20, Color.WHITE,
+				"User: " + StartProgram.user.getName());
+		viewObjects.add(userTextLabel);
 	}
 
 }

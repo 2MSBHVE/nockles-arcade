@@ -10,6 +10,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JOptionPane;
 
 import guiPractice.GUIApplication;
 
@@ -18,9 +19,13 @@ public class StartProgram extends GUIApplication {
 	public static StartProgram sPrg;
 	public static User user;
 	public static StartScreen startMenu;
+	public static UserScreen userMenu;
 	
 	static Clip clip;
 	
+	static Thread app;
+	
+//	CHANGE THIS BACK TO TRUE!!!
 	static boolean keepPlaying = true;
 	
 	public static SolitaireScreen solitaire;
@@ -31,9 +36,28 @@ public class StartProgram extends GUIApplication {
 	
 	@Override
 	protected void initScreen() {
+		user = new User("User");
+		
+		String inputName = (String)JOptionPane.showInputDialog(null,
+				"My name is...",
+                "What's your name?",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                StartProgram.user.getName());
+		if (!inputName.equals("")){
+			StartProgram.user.setName(inputName);
+			JOptionPane.showMessageDialog(null, "Alright, " + user.getName() + ". \n"
+					+ "Turn up your volume, and get ready to go back in time!");
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Fine. No name then. Be like that. \n"
+					+ "Regardless, turn up your volume, and get ready to go back in time!");
+		}
+		
 		startMenu = new StartScreen(getWidth(), getHeight());
 		solitaire = new SolitaireScreen(getWidth(), getHeight());
-		user = new User("User");
+		userMenu = new UserScreen(user, getWidth(), getHeight());
 		
 		
 		
@@ -43,9 +67,15 @@ public class StartProgram extends GUIApplication {
 	
 	public static void main(String[] args) {
 		AudioInputStream audioIn;
-		sPrg = new StartProgram(1200, 960);
-		Thread app = new Thread(sPrg);
+//		sPrg = new StartProgram(1200, 960);
+		sPrg = new StartProgram(1200, 800);
+		
+//		Thread app = new Thread(sPrg);
+		app = new Thread(sPrg);
 		app.start();
+		
+		
+		
 		String[] mikuWAVs = {
 				"./miku01.wav",
 				"./miku02.wav",
