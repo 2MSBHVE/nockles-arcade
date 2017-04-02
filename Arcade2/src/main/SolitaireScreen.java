@@ -76,11 +76,11 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 	int keyPushed = -1;
 
 	private String instructions = "Welcome to Solitaire!" + "\n\n"
-			+ "Click the face-down card at the top left to cycle through the deck. "
-			+ "Double-click on a \"Stack\" button to move the currently drawn card to a stack. "
-			+ "Click \"Move Cards\" to move cards between stacks. "
+			+ "Click the face-down card at the top left - or press 'Q' - to cycle through the deck. \n"
+			+ "Click on a \"Stack\" button to move the currently drawn card to a stack. \n"
+			+ "Click \"Move Cards\" - or press 'E' - to move cards between stacks. \n"
 			+ "\n\n"
-			+ "\"Stack\" buttons occasionally require a double click.";
+			+ "Press 'H' at any time to show this menu, or 'R' to refresh the graphics.";
 
 	public SolitaireScreen(int width, int height) {
 		super(width, height);
@@ -114,9 +114,9 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 		}else if (e.getKeyCode() == KeyEvent.VK_R) {
 			paintStacks();
 		}
-	//		else if (e.getKeyCode() == KeyEvent.VK_H) {
-//			displayHelp();
-//		}
+			else if (e.getKeyCode() == KeyEvent.VK_H) {
+			displayHelp();
+		}
 
 	}
 
