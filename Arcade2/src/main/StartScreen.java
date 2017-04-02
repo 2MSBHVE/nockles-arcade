@@ -138,7 +138,8 @@ public class StartScreen extends ClickableScreen {
 				
 //				StartProgram.sPrg.setName("Corrupted");
 				boolean b = true;
-				while(true){
+				long startTime = System.currentTimeMillis();
+				while(System.currentTimeMillis() - startTime < 15508){
 //					boolean b = (Math.random() < 0.5);
 					b = !b;
 					if(b){
@@ -162,6 +163,27 @@ public class StartScreen extends ClickableScreen {
 			}
 		}.start();
 		
+		new Thread() {
+			public void run() {
+
+				try {
+					Thread.sleep(15508);
+
+					long startTime = System.currentTimeMillis();
+					while(System.currentTimeMillis() - startTime < 4000){
+						String s = StartProgram.sPrg.getTitle();
+						//33 to 125
+						char c = (char) (33 + (int)(Math.random() * (125-33)));
+						StartProgram.sPrg.setTitle(s + c);
+						Thread.sleep(10);
+					}
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}.start();
+
 		new Thread() {
 			public void run() {
 				try {
@@ -203,7 +225,8 @@ public class StartScreen extends ClickableScreen {
 			JOptionPane.showMessageDialog(null, "Returning to the future... \n\n"
 					+ "Incoming message from 1995: \n"
 					+ "Hope you had fun! But before you go, just remember... \n"
-					+ "Don't do anything stupid like elect some billionaire as President or something...");
+					+ "Don't do anything stupid like elect some billionaire as President or something... \n\n\n"
+					+ "(Music courtesy of Peter Berkman)");
 		}
 	
 	}
