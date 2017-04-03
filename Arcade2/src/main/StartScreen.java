@@ -112,6 +112,7 @@ public class StartScreen extends ClickableScreen {
 					Clip clip = AudioSystem.getClip();
 					clip.open(AudioSystem.getAudioInputStream(StartProgram.class.getResource("./end.wav")));
 					clip.start();
+					System.err.println("PROGRAM CORRUPTED");
 					Thread.sleep(22200);
 				} catch (UnsupportedAudioFileException e) {
 					// TODO Auto-generated catch block
@@ -150,9 +151,10 @@ public class StartScreen extends ClickableScreen {
 
 //					StartProgram.sPrg.repaint();
 					
-//					StartProgram.sPrg.update(null);
-					
-				    
+					//					StartProgram.sPrg.update(null);
+
+
+
 					try {
 						Thread.sleep(750);
 					} catch (InterruptedException e) {
@@ -161,7 +163,29 @@ public class StartScreen extends ClickableScreen {
 					}
 				}
 			}
+
 		}.start();
+		
+		new Thread() {
+			public void run() {
+//				for (int j = 0; j < 10; j++) {
+				while(true){
+
+					try {
+						String err = "";
+						for (int i = 0; i < ((int)(Math.random() * 200) + 200); i++) {
+							err += (char) (33 + (int)(Math.random() * (125-33)));
+						}
+						System.err.println(err);
+						Thread.sleep(75);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		}.start();
+
 		
 		new Thread() {
 			public void run() {
