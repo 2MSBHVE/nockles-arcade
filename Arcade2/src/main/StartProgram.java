@@ -48,11 +48,15 @@ public class StartProgram extends GUIApplication {
 		if (!inputName.equals("")){
 			StartProgram.user.setName(inputName);
 			JOptionPane.showMessageDialog(null, "Alright, " + user.getName() + ". \n"
-					+ "Turn up your volume, and get ready to go back in time!");
+					+ "Turn up your volume, and get ready to go back in time!", null,
+	                JOptionPane.PLAIN_MESSAGE,
+	                null);
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "Fine. No name then. Be like that. \n"
-					+ "Regardless, turn up your volume, and get ready to go back in time!");
+					+ "Regardless, turn up your volume, and get ready to go back in time!", null,
+	                JOptionPane.PLAIN_MESSAGE,
+	                null);
 		}
 		
 		startMenu = new StartScreen(getWidth(), getHeight());

@@ -88,7 +88,9 @@ public class SolitaireScreen extends ClickableScreen implements KeyListener {
 	}
 
 	public void displayHelp(){
-		 JOptionPane.showMessageDialog(null, instructions);
+		 JOptionPane.showMessageDialog(null, instructions, null,
+	                JOptionPane.PLAIN_MESSAGE,
+	                null);
 	}
 	
 	@Override
@@ -823,7 +825,10 @@ try {
 
 		boolean validInput = false;
 		while (!validInput) {
-			String input1 = JOptionPane.showInputDialog("I want to take cards from Stack...");
+			String input1 = (String) JOptionPane.showInputDialog(null, "I want to take cards from Stack...", null,
+	                JOptionPane.PLAIN_MESSAGE,
+	                null,
+	                null, null);
 			if (input1 == null){
 				return;
 			}
@@ -864,7 +869,7 @@ try {
 			Object[] cardNamesInStack = cNames.toArray();
 
 			y2 = allCNames.indexOf(cardNamesInStack[JOptionPane.showOptionDialog(null, "From Stack " + x + ", I want to move the...", "",
-					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, cardNamesInStack, null)]);
+					JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, cardNamesInStack, null)]);
 			System.out.println(source.get(y2).getName());
 		}
 		final Card card = source.get(y2);
@@ -881,7 +886,10 @@ try {
 		String input3 = new String();
 		boolean validInput3 = false;
 		while (!validInput3) {
-			input3 = JOptionPane.showInputDialog("I want to move the " + card.getName() + " from Stack " + x + " to Stack...");
+			input3 = (String)JOptionPane.showInputDialog(null, "I want to move the " + card.getName() + " from Stack " + x + " to Stack...", null,
+	                JOptionPane.PLAIN_MESSAGE,
+	                null,
+	                null, null);
 			if (input3 == null){
 				return;
 			}

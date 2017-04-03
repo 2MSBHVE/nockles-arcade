@@ -250,7 +250,9 @@ public class StartScreen extends ClickableScreen {
 					+ "Incoming message from 1995: \n"
 					+ "Hope you had fun! But before you go, just remember... \n"
 					+ "Don't do anything stupid like elect some billionaire as President or something... \n\n\n"
-					+ "(Music courtesy of Peter Berkman)");
+					+ "(Music courtesy of Peter Berkman)", null,
+	                JOptionPane.WARNING_MESSAGE,
+	                null);
 		}
 	
 	}
